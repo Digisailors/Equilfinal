@@ -464,7 +464,7 @@ figure.effect-goliath p {
 	transform: translate3d(0,50px,0);
 }
 
-figure.effect-goliath:hover img {
+/* figure.effect-goliath:hover img {
 	-webkit-transform: translate3d(0,-80px,0);
 	transform: translate3d(0,-80px,0);
 }
@@ -472,7 +472,7 @@ figure.effect-goliath:hover img {
 figure.effect-goliath:hover h2 {
 	-webkit-transform: translate3d(0,-100px,0);
 	transform: translate3d(0,-100px,0);
-}
+} */
 
 figure.effect-goliath:hover p {
 	opacity: 1;
@@ -554,6 +554,16 @@ figure.effect-goliath:hover p {
 .tm-copyright {
     margin-left: -50px;
     margin-bottom: -50px;
+}
+
+#mainLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mainLogo img {
+    height: 180px;
+    width: 350px;
 }
 
 @media (max-width: 1200px) {

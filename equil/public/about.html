@@ -29,9 +29,9 @@ https://www.tooplate.com/view/2124-vertex
 
     <!-- Site logo -->
     <h1 class="tm-brand">
-        <i class="fas fa-mountain fa-2x tm-brand-icon"></i>
+        <!-- <i class="fas fa-mountain fa-2x tm-brand-icon"></i> -->
         <!-- <span class="tm-brand-text">Equil</span>         -->
-        <img src="img/Equil Final Logo-02.png" style="height: 180px;width: 350px;"> 
+        <!-- <img src="img/Equil Final Logo-02.png" style="height: 180px;width: 350px;">  -->
     </h1>
 
     <!-- Nav -->
@@ -414,6 +414,9 @@ https://www.tooplate.com/view/2124-vertex
         <div id="about" class="tm-section">
             <!-- About left -->
             <div class="tm-section-col tm-content tm-content-small">
+                <div id="mainLogo">
+                    <img src="./img/Equil Final Logo-02.png" alt="EQUIL ARCHITECTURAL Logo" />
+                </div>
                 <h2 class="tm-text-primary">About Us</h2>
                 <h4 class="tm-text-primary">Our Team</h4>
                 <p>
@@ -432,7 +435,7 @@ https://www.tooplate.com/view/2124-vertex
             </div>
             
             <!-- About right -->
-            <div class="tm-section-col tm-parallax" data-parallax="scroll" data-image-src="img/aboutnew.jpg"></div>
+            <div class="tm-section-col tm-parallax" data-parallax="scroll" data-image-src="img/about-cover.gif"></div>
         </div> <!-- #about -->
 
        <div id="contact" class="tm-section">
@@ -476,7 +479,10 @@ https://www.tooplate.com/view/2124-vertex
         </div> <!-- #contact -->
     </main>
 
+    <script src="js/lib/gsap.min.js"></script>
+    <script src="js/lib/ScrollTrigger.min.js"></script>
     <script src="js/plugins.js"></script>
+    <script src="js/animations.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');
@@ -524,48 +530,51 @@ https://www.tooplate.com/view/2124-vertex
 
             /****************** Gallery ******************/
 
-            const galleryItems = document.querySelector(".tm-gallery").children;
-            const itemsPerPage = 10;
-            const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
-            const pageAttribute = 'data-page';
-
-            function setPagination(currentPage) {
-                for(let i = 1; i <= totalPages; i++) {
-                    var $pager = '';
-                    
-                    if(currentPage == i) {
-                        $pager = $('<a href="javascript:void(0);" class="active tm-paging-link" '+pageAttribute+'="'+i+'"></a>');
-                    } else {
-                        $pager = $('<a href="javascript:void(0);" class="tm-paging-link" '+pageAttribute+'="'+i+'"></a>');
-                    }
-
-                    $pager.html(i);
-
-                    $pager.click(function(){ 
-                        $('.tm-paging-link').removeClass("active");
-                        $(this).addClass('active');
-                        var page = $(this).eq(0).attr(pageAttribute);
-                        showItems(page);
-                    });
-
-                    $pager.appendTo($('.tm-paging'));
-                }
-            }
-
-            function showItems(currentPage) {
-                for(let i = 0; i < galleryItems.length; i++) {
-                    galleryItems[i].classList.remove("show");
-                    galleryItems[i].classList.add("hide");
-
-                    if(i >= (currentPage * itemsPerPage) - itemsPerPage && i < currentPage * itemsPerPage) {
-                        galleryItems[i].classList.remove("hide");
-                        galleryItems[i].classList.add("show");
+            const hasGallery = $(".tm-gallery").length;
+            if (hasGallery) {
+                const galleryItems = document.querySelector(".tm-gallery").children;
+                const itemsPerPage = 10;
+                const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+                const pageAttribute = 'data-page';
+    
+                function setPagination(currentPage) {
+                    for(let i = 1; i <= totalPages; i++) {
+                        var $pager = '';
+                        
+                        if(currentPage == i) {
+                            $pager = $('<a href="javascript:void(0);" class="active tm-paging-link" '+pageAttribute+'="'+i+'"></a>');
+                        } else {
+                            $pager = $('<a href="javascript:void(0);" class="tm-paging-link" '+pageAttribute+'="'+i+'"></a>');
+                        }
+    
+                        $pager.html(i);
+    
+                        $pager.click(function(){ 
+                            $('.tm-paging-link').removeClass("active");
+                            $(this).addClass('active');
+                            var page = $(this).eq(0).attr(pageAttribute);
+                            showItems(page);
+                        });
+    
+                        $pager.appendTo($('.tm-paging'));
                     }
                 }
+    
+                function showItems(currentPage) {
+                    for(let i = 0; i < galleryItems.length; i++) {
+                        galleryItems[i].classList.remove("show");
+                        galleryItems[i].classList.add("hide");
+    
+                        if(i >= (currentPage * itemsPerPage) - itemsPerPage && i < currentPage * itemsPerPage) {
+                            galleryItems[i].classList.remove("hide");
+                            galleryItems[i].classList.add("show");
+                        }
+                    }
+                }
+    
+                setPagination(1);
+                showItems(1);
             }
-
-            setPagination(1);
-            showItems(1);
 
             /****************** Magnific Popup ***********/
 
